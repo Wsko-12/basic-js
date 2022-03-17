@@ -11,9 +11,24 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-function getSeason(/* date */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function getSeason(date) {
+  //На https://learn.javascript.ru/datetime в "Преобразование к числу, разность дат" написано, что +date === date.valueOf(), но почему-то на тесте проходит в одном пункте
+  //На https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime указано, что getTime() эквивалентен методу valueOf(), но в тестах подходит только getTime() 
+ 
+  if(!date) {return 'Unable to determine the time of year!'}  
+  try {date.getTime()} catch(error) {
+    throw new Error('Invalid date!');
+  }
+  const month = date.getMonth();
+  if(month === 11 || month <= 1){
+    return 'winter'
+  }else if(month > 1 && month <= 4){
+    return 'spring'
+  }else if(month > 4 && month <= 7){
+    return 'summer'
+  }else{
+    return 'autumn'
+  }
 }
 
 module.exports = {
