@@ -29,11 +29,7 @@ function getDNSStats(domains) {
       let domain = '';
       for(let i = arr.length-1;i>=0;i--){
           domain += `.${arr[i]}`;
-          if(subDomains[domain]){
-              subDomains[domain]++
-          }else{
-              subDomains[domain] = 1;
-          };
+          subDomains[domain] ?  subDomains[domain]++ : subDomains[domain] = 1;
       };
     });
     return subDomains;
