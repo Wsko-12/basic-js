@@ -36,9 +36,7 @@ function minesweeper(matrix) {
             if(matrix[y + yOffset][x + xOffset] != undefined){
               //don't check this element
               if(yOffset != 0 || xOffset != 0){
-                if(matrix[y + yOffset][x + xOffset]){
-                  output[y][x]++;
-                };
+                output[y][x] += matrix[y + yOffset][x + xOffset];
               };
             };
           };
